@@ -10,14 +10,20 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.nio.file.Paths;
+import java.nio.charset.StandardCharsets;
+import java.io.*;
 
 public class Bot extends TelegramLongPollingBot {
     public static void main(String[] args) {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+
         try {
             telegramBotsApi.registerBot(new Bot());
 
@@ -48,25 +54,21 @@ public class Bot extends TelegramLongPollingBot {
 
 
     public void onUpdateReceived(Update update) {
-        Model model = new Model();
+
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
             switch (message.getText()) {
                 case "/help":
-                    sendMsg(message, "код");
+                    sendMsg(message, "Привет! Я бот помогающий с переработкой отходов в Екатеринбурге.\n"
+                    		+ "Полезные ссылки:\n"
+                    		+ "https://vk.com/nemuseum\n"
+                    		+ "https://vk.com/clear_ekb\n"
+                    		+ "https://vk.com/rso_ekb");
                     break;
-                case "/setting":
-                    sendMsg(message, "Р§С‚Рѕ Р±СѓРґРµРј РЅР°СЃС‚СЂР°РёРІР°С‚СЊ?");
-                    break;
-                case "/pinas":
-                    sendMsg(message, "sam ti /pinas");
-                    break;
+                    
                 default:
-                    try {
-                        sendMsg(message, Weather.getWeather(message.getText(), model));
-                    } catch (IOException e) {
-                        sendMsg(message, "Р“РѕСЂРѕРґ РЅРµ РЅР°Р№РґРµРЅ!");
-                    }
+                	sendMsg(message, "пожалуйтса выберите команду из списка:\n"
+                    		+ "/help");
 
             }
         }
@@ -85,7 +87,6 @@ public class Bot extends TelegramLongPollingBot {
         KeyboardRow keyboardFirstRow = new KeyboardRow();
 
         keyboardFirstRow.add(new KeyboardButton("/help"));
-        keyboardFirstRow.add(new KeyboardButton("/setting"));
 
         keyboardRowList.add(keyboardFirstRow);
         replyKeyboardMarkup.setKeyboard(keyboardRowList);
@@ -97,6 +98,17 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotToken() {
-        return "849215663:AAE0GGt633luf8f-v-OeGDzRnhEkrdBEOlM";
+    	try{
+    		Scanner scanner = new Scanner(Paths.get("src\\token.txt"), StandardCharsets.UTF_8.name());
+    		String token = scanner.useDelimiter("\n").next();
+
+    		scanner.close();
+    		
+    		return token;
+    	}
+    	catch(IOException ex) {
+    		ex.printStackTrace();
+    		return null;
+    	}
     }
 }
