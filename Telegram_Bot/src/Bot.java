@@ -58,8 +58,15 @@ public class Bot extends TelegramLongPollingBot {
         Message message = update.getMessage();
         if (message != null && message.hasText()) {
             switch (message.getText()) {
+            
+            	case "/start":
+            		sendMsg(message, "Привет! Я помогу тебе перерабатывать мусор в Екатеринбурге. "
+            				+ "Введи /help чтобы узнать чем я могу тебе помочь");
+            		
+            		break;
+            				
                 case "/help":
-                    sendMsg(message, "Привет! Я бот помогающий с переработкой отходов в Екатеринбурге.\n"
+                    sendMsg(message, ""
                     		+ "Полезные ссылки:\n"
                     		+ "https://vk.com/nemuseum\n"
                     		+ "https://vk.com/clear_ekb\n"
