@@ -15,9 +15,7 @@ public class UserData {
         return name;
     }
 
-    public void SetCity(String city){
-        this.city = city;
-    }
+    public void SetCity(String city) { this.city = city; }
 
     public String GetCity(){
         return city;
