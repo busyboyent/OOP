@@ -1,5 +1,3 @@
-package main.java;
-
 public class Text {
 
     static final String START_MASSEGE = "Привет! Я помогу тебе перерабатывать мусор в Екатеринбурге.\n"

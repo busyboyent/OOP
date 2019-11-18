@@ -1,48 +1,49 @@
-package main.java;
-
+import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
-import java.util.Scanner;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
 
-       MassegeHandler massegeHandler = new MassegeHandler();
-       massegeHandler.onUpdateReceived(update, this);
+        Message message = update.getMessage();
+        if (message == null || !message.hasText()) {
+            return;
+        }
 
+        MessageHandler messageHandler = new MessageHandler();
+        var text = messageHandler.onUpdateReceived(message.getText());
+        sendMsg(update.getMessage(), text);
+
+    }
+
+    private void sendMsg(Message message, String text) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.enableMarkdown(true);
+
+        sendMessage.setChatId(message.getChatId().toString());
+
+        sendMessage.setReplyToMessageId(message.getMessageId());
+
+        sendMessage.setText(text);
+        try {
+
+            GetButtons getButtons = new GetButtons();
+            getButtons.setButtons(sendMessage);
+            sendMessage(sendMessage);
+
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getBotUsername() {
-        try {
-            Scanner scanner = new Scanner(Paths.get("src\\main\\resources\\botusername.txt"),
-                    StandardCharsets.UTF_8.name());
-            String botUsername = scanner.useDelimiter("\n").next();
-            return botUsername;
-        }
-        catch(IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
+        return GetTokenAndUsername.getBotUsername();
     }
-//логика токена
+
     public String getBotToken() {
-        try{
-            Scanner scanner = new Scanner(Paths.get("src\\main\\resources\\token.txt"),
-                    StandardCharsets.UTF_8.name());
-            String token = scanner.useDelimiter("\n").next();
-
-            scanner.close();
-
-            return token;
-        }
-        catch(IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
+        return GetTokenAndUsername.getBotToken();
     }
 }
