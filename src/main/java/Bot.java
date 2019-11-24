@@ -6,6 +6,8 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
 
+    private MessageHandler messageHandler = new MessageHandler("src\\main\\resources\\userDatabase.txt");
+
     public void onUpdateReceived(Update update) {
 
         Message message = update.getMessage();
@@ -13,8 +15,9 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
 
-        MessageHandler messageHandler = new MessageHandler();
-        var text = messageHandler.onUpdateReceived(message.getText());
+        var userId = update.getMessage().getChatId();
+
+        var text = messageHandler.onUpdateReceived(message.getText(), userId);
         sendMsg(update.getMessage(), text);
 
     }

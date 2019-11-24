@@ -1,10 +1,12 @@
 public class UserData {
     private String name;
     private String city;
+    private RegistrationStatus registrationStatus;
 
     {
         name = "unknownName";
         city = "unknownCity";
+        registrationStatus = RegistrationStatus.INACTIVE;
     }
 
     public void SetName(String name){
@@ -19,5 +21,17 @@ public class UserData {
 
     public String GetCity(){
         return city;
+    }
+
+    public void setRegistrationStatus(RegistrationStatus registrationStatus) {
+        this.registrationStatus = registrationStatus;
+    }
+
+    public RegistrationStatus getRegistrationStatus() { return registrationStatus; }
+
+    @Override
+    public String toString() {
+        return "name: " + name
+                + "\ncity: " + city;
     }
 }

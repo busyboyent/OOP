@@ -1,1 +1,1 @@
-{"a":{"name":"unknownName","city":"asdf"}}
+{"462903671":{"name":"Господин","city":"Преисподняя","registrationStatus":"INACTIVE"}}

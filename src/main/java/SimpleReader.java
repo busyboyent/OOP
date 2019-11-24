@@ -1,10 +1,11 @@
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class SimpleReader {
-    public static String Read(String path){
+class SimpleReader {
+    static String Read(String path){
         try {
             Scanner scanner = new Scanner(Paths.get(path),
                     StandardCharsets.UTF_8.name());
@@ -13,7 +14,7 @@ public class SimpleReader {
             scanner.close();
 
             return text;
-        } catch (IOException ex) {
+        } catch (IOException | NoSuchElementException ex) {
             ex.printStackTrace();
             return null;
         }
