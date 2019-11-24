@@ -9,14 +9,14 @@ public class UserDatabaseTest {
     @Test
     public void TryGetUserData_Null_EmptyData() {
         var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
-        var result = dataBase.TryGetUserData((long)1);
+        var result = dataBase.TryGetUserData((long)4);
         assertNull(result);
     }
 
     @Test
     public void TryCreateNewUserData_NotNull_EmptyData() {
         var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
-        var result = dataBase.TryCreateNewUserData((long)1);
+        var result = dataBase.TryCreateNewUserData((long)2);
         Assert.assertNotEquals(null, result);
     }
 
