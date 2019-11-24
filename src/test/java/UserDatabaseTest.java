@@ -29,6 +29,15 @@ public class UserDatabaseTest {
         Assert.assertEquals("unknownName", result.GetName());
     }
 
+    @Test
+    public void ToString() {
+        var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
+        var result = dataBase.ClearUserData((long)1);
+        result.SetName("ssss");
+        result = dataBase.ClearUserData((long)1);
+        Assert.assertEquals("id: 1\ndata:\nname: unknownName\ncity: unknownCity\n\n", dataBase.toString());
+    }
+
     @After
     public void tearDown(){
         File file = new File("src\\main\\resources\\testData.txt");

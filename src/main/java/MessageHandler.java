@@ -1,9 +1,6 @@
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.Message;
-import org.telegram.telegrambots.api.objects.Update;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import java.util.List;
 
 class MessageHandler {
 
@@ -39,6 +36,11 @@ class MessageHandler {
             case "/name":
                 userData.setRegistrationStatus(RegistrationStatus.SET_NAME);
                 return Text.NAME_REGISTRATION_MESSAGE;
+
+            case "/allData":
+                if (Arrays.asList(mainUsers).contains(userId))
+                    return userDatabase.toString();
+                break;
 
             default:
                 switch (userData.getRegistrationStatus()) {

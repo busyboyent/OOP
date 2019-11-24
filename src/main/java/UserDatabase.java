@@ -46,4 +46,13 @@ class UserDatabase {
         String dataJson = new Gson().toJson(data);
         SimpleWriter.Write(dataJson, dataName);
     }
+
+    @Override
+    public String toString() {
+        var string = "";
+        for(Map.Entry<Long, UserData> item : data.entrySet()){
+            string += "id: " + item.getKey() + "\ndata:\n" + item.getValue().toString() + "\n\n";
+        }
+        return string;
+    }
 }
