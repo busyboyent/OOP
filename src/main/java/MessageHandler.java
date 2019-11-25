@@ -9,7 +9,7 @@ class MessageHandler {
 
     MessageHandler(String dataFile){
         userDatabase = new UserDatabase(dataFile);
-        mainUsers = new Long[] { (long)462903671 };
+        mainUsers = new Long[] { (long)462903671, (long)549213748 };
     }
 
     private String onUpdateReceivedSwitch(String messageText, Long userId){

@@ -3,6 +3,11 @@ public class Text {
     static final String START_MASSEGE = "Привет! Я помогу тебе перерабатывать мусор в Екатеринбурге.\n"
             + "Введи /help чтобы узнать чем я могу тебе помочь";
     static final String HELP_MASSEGE = ""
+            + "/data - ваши данные\n"
+     //       + "/id - ваш id чата\n"
+            + "/name - укажите свое имя\n"
+            + "/city - укажите свой город\n"
+            +"\n"
             + "Полезные ссылки:\n"
             + "https://vk.com/nemuseum\n"
             + "https://vk.com/clear_ekb\n"
