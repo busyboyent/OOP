@@ -4,3 +4,4 @@
 /src/main/resources/*
 /target/*
 /.gradle/*
+/src/.idea/*
