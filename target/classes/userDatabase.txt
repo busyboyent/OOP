@@ -1,1 +1,0 @@
-{"462903671":{"name":"Sasana!","city":"Muhosransk","registrationStatus":"INACTIVE"},"549213748":{"name":"Ivan","city":"Yekaterinburg","registrationStatus":"INACTIVE"}}
