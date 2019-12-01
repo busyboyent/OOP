@@ -24,16 +24,16 @@ public class DatabaseTest {
     public void CreateNewUserData_NotNull_NotEmptyData() {
         var dataBase = new Database("src\\main\\resources\\testData.txt");
         var result = dataBase.clearUserData((long)1);
-        result.SetName("ssss");
+        result.setName("ssss");
         result = dataBase.clearUserData((long)1);
-        Assert.assertEquals("unknownName", result.GetName());
+        Assert.assertEquals("unknownName", result.getName());
     }
 
     @Test
     public void ToString() {
         var dataBase = new Database("src\\main\\resources\\testData.txt");
         var result = dataBase.clearUserData((long)1);
-        result.SetName("ssss");
+        result.setName("ssss");
         result = dataBase.clearUserData((long)1);
         Assert.assertEquals("id: 1\ndata:\nname: unknownName\ncity: unknownCity\n\n", dataBase.toString());
     }

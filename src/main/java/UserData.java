@@ -9,17 +9,17 @@ public class UserData {
         registrationStatus = RegistrationStatus.INACTIVE;
     }
 
-    void SetName(String name){
+    void setName(String name){
         this.name = name;
     }
 
-    String GetName(){
+    String getName(){
         return name;
     }
 
-    void SetCity(String city) { this.city = city; }
+    void setCity(String city) { this.city = city; }
 
-    public String GetCity(){
+    public String getCity(){
         return city;
     }
 

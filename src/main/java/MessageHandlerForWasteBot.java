@@ -51,11 +51,11 @@ class MessageHandlerForWasteBot implements MassageHandler {
     private String checkUserRegistrationStatusSwitch(UserData userData, String messageText){
         switch (userData.getRegistrationStatus()) {
             case SET_CITY:
-                userData.SetCity(messageText);
+                userData.setCity(messageText);
                 userData.setRegistrationStatus(RegistrationStatus.INACTIVE);
                 return Text.REGISTRATION_END_MESSEGE;
             case SET_NAME:
-                userData.SetName(messageText);
+                userData.setName(messageText);
                 userData.setRegistrationStatus(RegistrationStatus.INACTIVE);
                 return Text.REGISTRATION_END_MESSEGE;
         }
