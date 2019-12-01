@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-class SimpleReader {
+class MyFileReader {
     static String Read(String path){
         try {
             Scanner scanner = new Scanner(Paths.get(path),

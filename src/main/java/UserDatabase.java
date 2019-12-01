@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import java.util.Map;
 import java.util.HashMap;
-import java.lang.reflect.Type;
+
 import com.google.gson.reflect.TypeToken;
 
 //src\\main\\resources\\userDatabase.txt
@@ -15,7 +15,7 @@ class UserDatabase {
     }
 
     private HashMap<Long, UserData> InitUserDatabase(){
-        var data = SimpleReader.Read(dataName);
+        var data = MyFileReader.Read(dataName);
         if (data == null) return new HashMap<Long, UserData>();
         Gson gson = new Gson();
         return gson.fromJson(
