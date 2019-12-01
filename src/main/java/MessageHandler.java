@@ -42,18 +42,24 @@ class MessageHandler {
                 break;
 
             default:
-                switch (userData.getRegistrationStatus()) {
-                    case SET_CITY:
-                        userData.SetCity(messageText);
-                        userData.setRegistrationStatus(RegistrationStatus.INACTIVE);
-                        return Text.REGISTRATION_END_MESSEGE;
-                    case SET_NAME:
-                        userData.SetName(messageText);
-                        userData.setRegistrationStatus(RegistrationStatus.INACTIVE);
-                        return Text.REGISTRATION_END_MESSEGE;
-                }
+                var result = checkUserRegistrationStatusSwitch(userData, messageText);
+                if (result != null) return result;
         }
         return Text.DEFAULT_MASSEGE;
+    }
+
+    private String checkUserRegistrationStatusSwitch(UserData userData, String messageText){
+        switch (userData.getRegistrationStatus()) {
+            case SET_CITY:
+                userData.SetCity(messageText);
+                userData.setRegistrationStatus(RegistrationStatus.INACTIVE);
+                return Text.REGISTRATION_END_MESSEGE;
+            case SET_NAME:
+                userData.SetName(messageText);
+                userData.setRegistrationStatus(RegistrationStatus.INACTIVE);
+                return Text.REGISTRATION_END_MESSEGE;
+        }
+        return null;
     }
 
     String onUpdateReceived(String messageText, Long userId) {
