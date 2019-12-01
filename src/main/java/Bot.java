@@ -6,9 +6,9 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
 
-    private MessageHandler messageHandler;
+    private MassageHandler messageHandler;
 
-    public Bot(MessageHandler messageHandler){
+    public Bot(MassageHandler messageHandler){
         this.messageHandler = messageHandler;
     }
 

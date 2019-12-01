@@ -1,22 +1,21 @@
-import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.After;
 import java.io.File;
 
 
-public class MessageHandlerTest {
+public class MessageHandlerForWasteBotTest {
 
     @Test
     public void init(){
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
     }
 
     @Test
     public void onUpdateReceived_Help() {
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
         long id = 1;
 
         var helpTest = messageHandler.onUpdateReceived("/help", id);
@@ -26,7 +25,7 @@ public class MessageHandlerTest {
     @Test
     public void onUpdateReceived_Start() {
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
         long id = 1;
 
         var startTest = messageHandler.onUpdateReceived("/start", id);
@@ -36,7 +35,7 @@ public class MessageHandlerTest {
     @Test
     public void onUpdateReceived_Default() {
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("ooAAooAAoo", id);
@@ -46,7 +45,7 @@ public class MessageHandlerTest {
     @Test
     public void onUpdateReceived_MyData() {
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("/data", id);
@@ -56,7 +55,7 @@ public class MessageHandlerTest {
     @Test
     public void onUpdateReceived_SetMyName() {
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("/name", id);
@@ -70,7 +69,7 @@ public class MessageHandlerTest {
     @Test
     public void onUpdateReceived_SetMyCity() {
         var database = new Database("src\\main\\resources\\testData.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("/city", id);

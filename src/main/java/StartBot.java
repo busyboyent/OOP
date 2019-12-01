@@ -8,7 +8,7 @@ public class StartBot {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         var database = new Database("src\\main\\resources\\userDatabase.txt");
-        var messageHandler = new MessageHandler(database);
+        var messageHandler = new MessageHandlerForWasteBot(database);
 
         try {
             telegramBotsApi.registerBot(new Bot(messageHandler));

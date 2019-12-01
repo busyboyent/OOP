@@ -1,12 +1,12 @@
 import java.util.Arrays;
 
 
-class MessageHandler {
+class MessageHandlerForWasteBot implements MassageHandler {
 
     private UserDatabase database;
     private Long[] mainUsers;
 
-    MessageHandler(UserDatabase database){
+    MessageHandlerForWasteBot(UserDatabase database){
         this.database = database;
         mainUsers = new Long[] { (long)462903671, (long)549213748 };
     }
@@ -62,7 +62,7 @@ class MessageHandler {
         return null;
     }
 
-    String onUpdateReceived(String messageText, Long userId) {
+    public String onUpdateReceived(String messageText, Long userId) {
         var result = onUpdateReceivedSwitch(messageText, userId);
         database.saveData();
         return result;
