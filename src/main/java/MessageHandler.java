@@ -3,16 +3,16 @@ import java.util.Arrays;
 
 class MessageHandler {
 
-    private UserDatabase userDatabase;
+    private UserDatabase database;
     private Long[] mainUsers;
 
-    MessageHandler(String dataFile){
-        userDatabase = new UserDatabase(dataFile);
+    MessageHandler(UserDatabase database){
+        this.database = database;
         mainUsers = new Long[] { (long)462903671, (long)549213748 };
     }
 
     private String onUpdateReceivedSwitch(String messageText, Long userId){
-        var userData = userDatabase.tryCreateNewUserData(userId);
+        var userData = database.tryCreateNewUserData(userId);
 
         switch (messageText) {
 
@@ -38,7 +38,7 @@ class MessageHandler {
 
             case "/allData":
                 if (Arrays.asList(mainUsers).contains(userId))
-                    return userDatabase.toString();
+                    return database.toString();
                 break;
 
             default:
@@ -64,7 +64,7 @@ class MessageHandler {
 
     String onUpdateReceived(String messageText, Long userId) {
         var result = onUpdateReceivedSwitch(messageText, userId);
-        userDatabase.saveData();
+        database.saveData();
         return result;
     }
 }

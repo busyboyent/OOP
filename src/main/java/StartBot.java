@@ -7,9 +7,11 @@ public class StartBot {
     public static void main(String[] args) {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
+        var database = new Database("src\\main\\resources\\userDatabase.txt");
+        var messageHandler = new MessageHandler(database);
 
         try {
-            telegramBotsApi.registerBot(new Bot());
+            telegramBotsApi.registerBot(new Bot(messageHandler));
 
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();

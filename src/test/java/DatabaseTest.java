@@ -4,25 +4,25 @@ import org.junit.Test;
 import org.junit.After;
 import java.io.File;
 
-public class UserDatabaseTest {
+public class DatabaseTest {
 
     @Test
     public void TryGetUserData_Null_EmptyData() {
-        var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
+        var dataBase = new Database("src\\main\\resources\\testData.txt");
         var result = dataBase.tryGetUserData((long)4);
         assertNull(result);
     }
 
     @Test
     public void TryCreateNewUserData_NotNull_EmptyData() {
-        var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
+        var dataBase = new Database("src\\main\\resources\\testData.txt");
         var result = dataBase.tryCreateNewUserData((long)2);
         Assert.assertNotEquals(null, result);
     }
 
     @Test
     public void CreateNewUserData_NotNull_NotEmptyData() {
-        var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
+        var dataBase = new Database("src\\main\\resources\\testData.txt");
         var result = dataBase.clearUserData((long)1);
         result.SetName("ssss");
         result = dataBase.clearUserData((long)1);
@@ -31,7 +31,7 @@ public class UserDatabaseTest {
 
     @Test
     public void ToString() {
-        var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
+        var dataBase = new Database("src\\main\\resources\\testData.txt");
         var result = dataBase.clearUserData((long)1);
         result.SetName("ssss");
         result = dataBase.clearUserData((long)1);

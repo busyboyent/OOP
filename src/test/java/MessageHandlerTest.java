@@ -9,13 +9,14 @@ public class MessageHandlerTest {
 
     @Test
     public void init(){
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
     }
 
     @Test
     public void onUpdateReceived_Help() {
-
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
         long id = 1;
 
         var helpTest = messageHandler.onUpdateReceived("/help", id);
@@ -24,8 +25,8 @@ public class MessageHandlerTest {
 
     @Test
     public void onUpdateReceived_Start() {
-
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
         long id = 1;
 
         var startTest = messageHandler.onUpdateReceived("/start", id);
@@ -34,8 +35,8 @@ public class MessageHandlerTest {
 
     @Test
     public void onUpdateReceived_Default() {
-
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("ooAAooAAoo", id);
@@ -44,8 +45,8 @@ public class MessageHandlerTest {
 
     @Test
     public void onUpdateReceived_MyData() {
-
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("/data", id);
@@ -54,8 +55,8 @@ public class MessageHandlerTest {
 
     @Test
     public void onUpdateReceived_SetMyName() {
-
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("/name", id);
@@ -68,8 +69,8 @@ public class MessageHandlerTest {
 
     @Test
     public void onUpdateReceived_SetMyCity() {
-
-        var messageHandler = new MessageHandler("src\\main\\resources\\testData.txt");
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new MessageHandler(database);
         long id = 1;
 
         var defaultTest = messageHandler.onUpdateReceived("/city", id);

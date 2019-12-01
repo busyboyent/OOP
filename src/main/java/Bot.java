@@ -6,7 +6,11 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class Bot extends TelegramLongPollingBot {
 
-    private MessageHandler messageHandler = new MessageHandler("src\\main\\resources\\userDatabase.txt");
+    private MessageHandler messageHandler;
+
+    public Bot(MessageHandler messageHandler){
+        this.messageHandler = messageHandler;
+    }
 
     public void onUpdateReceived(Update update) {
 
