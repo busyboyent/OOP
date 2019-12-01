@@ -43,10 +43,10 @@ public class Bot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return MyFileReader.Read("src\\main\\resources\\botusername.txt");
+        return MyFileReader.read("src\\main\\resources\\botusername.txt");
     }
 
     public String getBotToken() {
-        return MyFileReader.Read("src\\main\\resources\\token.txt");
+        return MyFileReader.read("src\\main\\resources\\token.txt");
     }
 }

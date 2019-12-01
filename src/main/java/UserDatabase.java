@@ -11,11 +11,11 @@ class UserDatabase {
 
     UserDatabase(String file){
         dataName = file;
-        data = InitUserDatabase();
+        data = initUserDatabase();
     }
 
-    private HashMap<Long, UserData> InitUserDatabase(){
-        var data = MyFileReader.Read(dataName);
+    private HashMap<Long, UserData> initUserDatabase(){
+        var data = MyFileReader.read(dataName);
         if (data == null) return new HashMap<Long, UserData>();
         Gson gson = new Gson();
         return gson.fromJson(
@@ -23,11 +23,11 @@ class UserDatabase {
                 new TypeToken<HashMap<Long, UserData>>(){}.getType());
     }
 
-    UserData TryGetUserData(Long user){
+    UserData tryGetUserData(Long user){
         return data.get(user);
     }
 
-    UserData TryCreateNewUserData(Long user){
+    UserData tryCreateNewUserData(Long user){
         var userData = data.get(user);
         if (userData == null){
             userData = new UserData();
@@ -36,15 +36,15 @@ class UserDatabase {
         return userData;
     }
 
-    UserData ClearUserData(Long user){
+    UserData clearUserData(Long user){
         var userData = new UserData();
         data.put(user, userData);
         return userData;
     }
 
-    void SaveData(){
+    void saveData(){
         String dataJson = new Gson().toJson(data);
-        SimpleWriter.Write(dataJson, dataName);
+        MyFileWriter.write(dataJson, dataName);
     }
 
     @Override

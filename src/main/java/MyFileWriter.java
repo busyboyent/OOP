@@ -1,9 +1,9 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
-class SimpleWriter {
+class MyFileWriter {
 
-    static void Write(String text, String path) {
+    static void write(String text, String path) {
         try (FileWriter writer = new FileWriter(path, false)) {
             writer.write(text);
             writer.flush();

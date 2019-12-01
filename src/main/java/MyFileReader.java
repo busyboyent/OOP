@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 class MyFileReader {
-    static String Read(String path){
+    static String read(String path){
         try {
             Scanner scanner = new Scanner(Paths.get(path),
                     StandardCharsets.UTF_8.name());

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -13,7 +12,7 @@ class MessageHandler {
     }
 
     private String onUpdateReceivedSwitch(String messageText, Long userId){
-        var userData = userDatabase.TryCreateNewUserData(userId);
+        var userData = userDatabase.tryCreateNewUserData(userId);
 
         switch (messageText) {
 
@@ -59,7 +58,7 @@ class MessageHandler {
 
     String onUpdateReceived(String messageText, Long userId) {
         var result = onUpdateReceivedSwitch(messageText, userId);
-        userDatabase.SaveData();
+        userDatabase.saveData();
         return result;
     }
 }

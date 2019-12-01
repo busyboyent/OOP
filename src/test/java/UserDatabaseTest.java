@@ -9,32 +9,32 @@ public class UserDatabaseTest {
     @Test
     public void TryGetUserData_Null_EmptyData() {
         var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
-        var result = dataBase.TryGetUserData((long)4);
+        var result = dataBase.tryGetUserData((long)4);
         assertNull(result);
     }
 
     @Test
     public void TryCreateNewUserData_NotNull_EmptyData() {
         var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
-        var result = dataBase.TryCreateNewUserData((long)2);
+        var result = dataBase.tryCreateNewUserData((long)2);
         Assert.assertNotEquals(null, result);
     }
 
     @Test
     public void CreateNewUserData_NotNull_NotEmptyData() {
         var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
-        var result = dataBase.ClearUserData((long)1);
+        var result = dataBase.clearUserData((long)1);
         result.SetName("ssss");
-        result = dataBase.ClearUserData((long)1);
+        result = dataBase.clearUserData((long)1);
         Assert.assertEquals("unknownName", result.GetName());
     }
 
     @Test
     public void ToString() {
         var dataBase = new UserDatabase("src\\main\\resources\\testData.txt");
-        var result = dataBase.ClearUserData((long)1);
+        var result = dataBase.clearUserData((long)1);
         result.SetName("ssss");
-        result = dataBase.ClearUserData((long)1);
+        result = dataBase.clearUserData((long)1);
         Assert.assertEquals("id: 1\ndata:\nname: unknownName\ncity: unknownCity\n\n", dataBase.toString());
     }
 
