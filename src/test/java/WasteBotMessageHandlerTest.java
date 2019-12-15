@@ -2,6 +2,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.After;
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class WasteBotMessageHandlerTest {
@@ -18,7 +21,7 @@ public class WasteBotMessageHandlerTest {
         var messageHandler = new WasteBotMessageHandler(database);
         long id = 1;
 
-        var helpTest = messageHandler.onUpdateReceived("/help", id);
+        var helpTest = messageHandler.onUpdateReceived("/help", id).getMessage();
         Assert.assertEquals(Text.HELP_MASSEGE, helpTest);
     }
 
@@ -28,7 +31,7 @@ public class WasteBotMessageHandlerTest {
         var messageHandler = new WasteBotMessageHandler(database);
         long id = 1;
 
-        var startTest = messageHandler.onUpdateReceived("/start", id);
+        var startTest = messageHandler.onUpdateReceived("/start", id).getMessage();
         Assert.assertEquals(Text.START_MASSEGE, startTest);
     }
 
@@ -38,7 +41,7 @@ public class WasteBotMessageHandlerTest {
         var messageHandler = new WasteBotMessageHandler(database);
         long id = 1;
 
-        var defaultTest = messageHandler.onUpdateReceived("ooAAooAAoo", id);
+        var defaultTest = messageHandler.onUpdateReceived("ooAAooAAoo", id).getMessage();
         Assert.assertEquals(Text.DEFAULT_MASSEGE, defaultTest);
     }
 
@@ -48,7 +51,7 @@ public class WasteBotMessageHandlerTest {
         var messageHandler = new WasteBotMessageHandler(database);
         long id = 1;
 
-        var defaultTest = messageHandler.onUpdateReceived("/data", id);
+        var defaultTest = messageHandler.onUpdateReceived("/data", id).getMessage();
         Assert.assertEquals("name: unknownName\ncity: unknownCity", defaultTest);
     }
 
@@ -58,11 +61,11 @@ public class WasteBotMessageHandlerTest {
         var messageHandler = new WasteBotMessageHandler(database);
         long id = 1;
 
-        var defaultTest = messageHandler.onUpdateReceived("/name", id);
+        var defaultTest = messageHandler.onUpdateReceived("/name", id).getMessage();
         Assert.assertEquals(Text.NAME_REGISTRATION_MESSAGE, defaultTest);
-        defaultTest = messageHandler.onUpdateReceived("Инакентий", id);
+        defaultTest = messageHandler.onUpdateReceived("Инакентий", id).getMessage();
         Assert.assertEquals(Text.REGISTRATION_END_MESSEGE, defaultTest);
-        defaultTest = messageHandler.onUpdateReceived("/data", id);
+        defaultTest = messageHandler.onUpdateReceived("/data", id).getMessage();
         Assert.assertEquals("name: Инакентий\ncity: unknownCity", defaultTest);
     }
 
@@ -72,12 +75,22 @@ public class WasteBotMessageHandlerTest {
         var messageHandler = new WasteBotMessageHandler(database);
         long id = 1;
 
-        var defaultTest = messageHandler.onUpdateReceived("/city", id);
+        var defaultTest = messageHandler.onUpdateReceived("/city", id).getMessage();
         Assert.assertEquals(Text.CITY_REGISTRATION_MESSAGE, defaultTest);
-        defaultTest = messageHandler.onUpdateReceived("Мухосранск", id);
+        defaultTest = messageHandler.onUpdateReceived("Мухосранск", id).getMessage();
         Assert.assertEquals(Text.REGISTRATION_END_MESSEGE, defaultTest);
-        defaultTest = messageHandler.onUpdateReceived("/data", id);
+        defaultTest = messageHandler.onUpdateReceived("/data", id).getMessage();
         Assert.assertEquals("name: unknownName\ncity: Мухосранск", defaultTest);
+    }
+
+    @Test
+    public void onUpdateReceived_meme() {
+        var database = new Database("src\\main\\resources\\testData.txt");
+        var messageHandler = new WasteBotMessageHandler(database);
+        long id = 1;
+
+        var defaultTest = messageHandler.onUpdateReceived("/meme", id).getPhoto();
+        Assert.assertTrue(Arrays.asList(Photo.memes).contains(defaultTest));
     }
 
     @After

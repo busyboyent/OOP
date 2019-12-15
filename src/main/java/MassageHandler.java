@@ -1,3 +1,3 @@
 public interface MassageHandler {
-    String onUpdateReceived(String messageText, Long userId);
+    ClusterMessage onUpdateReceived(String messageText, Long userId);
 }

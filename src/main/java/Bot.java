@@ -1,4 +1,5 @@
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -21,13 +22,18 @@ public class Bot extends TelegramLongPollingBot {
 
         var userId = update.getMessage().getChatId();
 
-        var text = messageHandler.onUpdateReceived(message.getText(), userId);
-        sendMsg(update.getMessage(), text);
+        var clusterMessage = messageHandler.onUpdateReceived(message.getText(), userId);
+        if (clusterMessage.haveMessage()) {
+            sendMsg(update.getMessage(), clusterMessage.getMessage());
+        }
+        if (clusterMessage.havePhoto()) {
+            sendMessagePhoto(update.getMessage(), clusterMessage.getPhoto());
+        }
 
     }
 
     private void sendMsg(Message message, String text) {
-        SendMessage sendMessage = new SendMessage();
+        var sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
 
         sendMessage.setChatId(message.getChatId().toString());
@@ -41,6 +47,19 @@ public class Bot extends TelegramLongPollingBot {
             getButtons.setButtons(sendMessage);
             sendMessage(sendMessage);
 
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMessagePhoto(Message message, String photo) {
+        var sendPhoto = new SendPhoto();
+
+        sendPhoto.setChatId(message.getChatId().toString());
+
+        sendPhoto.setPhoto(photo);
+        try {
+            sendPhoto(sendPhoto);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

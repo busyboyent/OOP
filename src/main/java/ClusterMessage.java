@@ -7,6 +7,11 @@ public class ClusterMessage {
         this.photo = photo;
     }
 
+    ClusterMessage(String message){
+        this.message = message;
+        this.photo = null;
+    }
+
     public String getMessage(){
         return message;
     }
@@ -14,4 +19,8 @@ public class ClusterMessage {
     public String getPhoto(){
         return photo;
     }
+
+    public boolean haveMessage() { return message != null; }
+
+    public boolean havePhoto() { return photo != null; }
 }
