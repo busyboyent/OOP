@@ -1,12 +1,12 @@
 import java.util.Arrays;
 
 
-class MessageHandlerForWasteBot implements MassageHandler {
+class WasteBotMessageHandler implements MassageHandler {
 
     private UserDatabase database;
     private Long[] mainUsers;
 
-    MessageHandlerForWasteBot(UserDatabase database){
+    WasteBotMessageHandler(UserDatabase database){
         this.database = database;
         mainUsers = new Long[] { (long)462903671, (long)549213748 };
     }
