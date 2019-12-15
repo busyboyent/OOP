@@ -2,9 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.After;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.List;
 
 
 public class WasteBotMessageHandlerTest {
