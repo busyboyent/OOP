@@ -1,7 +1,7 @@
 /out/*
 /.idea/*
 *.iml
-/src/main/resources/*
 /target/*
 /.gradle/*
 /src/.idea/*
+*.txt
